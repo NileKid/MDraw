@@ -1,15 +1,18 @@
+
 type op = Add | Sub | Mult | Div | Equal | Neq | Less | Leq | Greater | Geq
 
-type curvet = 
-   | Literalt
-   | Curvet
-   | Pointt
-   | Layert
+type MDrawtree = 
+   | Literaltree
+   | Pointtree
+   | linetree
+   | curvetree
+   | Layertree
 
 type expr =
   | Literal of int
   | Dotop of string * string * expr list
   | Curve of expr * expr * expr * expr * expr * expr * expr * expr
+  | Line of expr list 
   | Point of expr * expr
   | Layer of string list
   | Id of string
@@ -27,13 +30,13 @@ type stmt =
   | While of expr * stmt
 
 type var_decl = {
-   t : curvet;
+   t : MDrawtree;
    name : string;
    value : int list;
 }
 
 type func_decl = {
-   return : curvet;
+   return : MDrawtree;
    fname : string;
    formals : var_decl list;
    locals : var_decl list;
@@ -41,3 +44,4 @@ type func_decl = {
 }
 
 type program = var_decl list * func_decl list
+
